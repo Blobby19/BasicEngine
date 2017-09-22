@@ -69,8 +69,6 @@ int main(int argc, char **argv)
 
 	engine->run();
 
-	system("PAUSE");
-
 	delete engine;
 
 	return 0;

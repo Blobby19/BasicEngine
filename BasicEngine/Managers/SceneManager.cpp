@@ -18,6 +18,7 @@ SceneManager::SceneManager()
 SceneManager::~SceneManager()
 {
 	delete modelsManager;
+	modelsManager = nullptr;
 }
 
 void SceneManager::notifyBeginFrame()

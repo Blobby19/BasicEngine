@@ -47,6 +47,8 @@ void Init_GLUT::init(
 	glutCloseFunc(closeCallback);
 	glutDisplayFunc(displayCallback);
 	glutReshapeFunc(reshapeCallback);
+	glutKeyboardFunc(keyboardCallback);
+	glutMouseFunc(mouseCallback);
 
 	windowInformation = windowInfo;
 
@@ -127,6 +129,16 @@ void Init_GLUT::reshapeCallback(int width, int height)
 		windowInformation.height = height;
 		windowInformation.width = width;
 	}
+}
+
+void Init_GLUT::keyboardCallback(unsigned char key, int x, int y)
+{
+
+}
+
+void Init_GLUT::mouseCallback(int button, int state, int x, int y)
+{
+
 }
 
 void Init_GLUT::closeCallback(void)

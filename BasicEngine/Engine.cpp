@@ -13,10 +13,13 @@ Engine::~Engine()
 {
 	if (m_SceneManager)
 		delete m_SceneManager;
+	m_SceneManager = nullptr;
 	if (m_ModelsManager)
 		delete m_ModelsManager;
+	m_ModelsManager = nullptr;
 	if (m_ShaderManager)
 		delete m_ShaderManager;
+	m_ShaderManager = nullptr;
 }
 
 bool Engine::init()
