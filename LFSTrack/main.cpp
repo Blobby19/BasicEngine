@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 	CubeIndex *cube = new CubeIndex();
 	cube->create();
 	cube->setProgram(engine->getShaderManager()->getShader("trackShader"));
+	
 	engine->getModelsManager()->setModel("cube", cube);
 
 	LFS::Format::PTH_FILE_FORMAT pthTrack;
@@ -68,8 +69,6 @@ int main(int argc, char **argv)
 	}
 
 	engine->run();
-
-	delete engine;
 
 	return 0;
 }

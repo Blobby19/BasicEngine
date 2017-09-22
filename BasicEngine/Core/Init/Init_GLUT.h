@@ -45,5 +45,6 @@ private:
 	static void closeCallback(void);
 	static void keyboardCallback(unsigned char key, int x, int y);
 	static void mouseCallback(int button, int state, int x, int y);
+	static void motionCallback(int x, int y);
 };
 

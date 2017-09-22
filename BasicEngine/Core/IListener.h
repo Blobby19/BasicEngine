@@ -18,6 +18,10 @@ public:
 		int height,
 		int previous_width,
 		int previous_height) = 0;
+	virtual void notifyMouse(int button, int state, int x, int y) = 0;
+	virtual void notifyKeyboard(unsigned char key, int x, int y) = 0;
+	virtual void notifyPassiveMotion(int x, int y) = 0;
+
 };
 
 inline BasicEngine::Core::IListener::~IListener()

@@ -43,16 +43,18 @@ void Init_GLUT::init(
 
 	glEnable(GL_DEBUG_OUTPUT);
 
+	glutKeyboardFunc(keyboardCallback);
+	glutMouseFunc(mouseCallback);
+	glutPassiveMotionFunc(motionCallback);
 	glutIdleFunc(idleCallback);
 	glutCloseFunc(closeCallback);
 	glutDisplayFunc(displayCallback);
 	glutReshapeFunc(reshapeCallback);
-	glutKeyboardFunc(keyboardCallback);
-	glutMouseFunc(mouseCallback);
 
 	windowInformation = windowInfo;
 
 	Init_GLEW::Init();
+
 	glDebugMessageCallback(DebugOutput::callback, NULL);
 	glDebugMessageControl(GL_DONT_CARE,
 		GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
@@ -133,12 +135,21 @@ void Init_GLUT::reshapeCallback(int width, int height)
 
 void Init_GLUT::keyboardCallback(unsigned char key, int x, int y)
 {
-
+	std::cout << "keyboard" << std::endl;
+	if (listener)
+		listener->notifyKeyboard(key, x, y);
 }
 
 void Init_GLUT::mouseCallback(int button, int state, int x, int y)
 {
+	if (listener)
+		listener->notifyMouse(button, state, x, y);
+}
 
+void Init_GLUT::motionCallback(int x, int y)
+{
+	if (listener)
+		listener->notifyPassiveMotion(x, y);
 }
 
 void Init_GLUT::closeCallback(void)

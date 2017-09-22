@@ -53,9 +53,29 @@ void SceneManager::notifyReshape(int width, int height, int previous_width, int 
 	projection_matrix[3][2] = 2.0f * near1 * far1 / (near1 - far1);
 }
 
+void SceneManager::notifyMouse(int button, int state, int x, int y)
+{
+	std::cout << "notifyMouse" << std::endl;
+}
+
+void SceneManager::notifyKeyboard(unsigned char key, int x, int y)
+{
+	std::cout << "notifyKeyboard" << std::endl;
+}
+
+void SceneManager::notifyPassiveMotion(int x, int y)
+{
+	std::cout << "notifyPassiveMotion" << std::endl;
+}
+
 void SceneManager::setModelsManager(ModelsManager *& _modelsManager)
 {
 	modelsManager = _modelsManager;
+}
+
+glm::mat4 BasicEngine::Managers::SceneManager::getViewMatrix()
+{
+	return view_matrix;
 }
 
 void BasicEngine::Managers::SceneManager::setViewMatrix(glm::mat4 viewMatrix)
