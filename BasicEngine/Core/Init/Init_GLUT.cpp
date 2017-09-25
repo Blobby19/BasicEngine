@@ -45,6 +45,7 @@ void Init_GLUT::init(
 
 	glutKeyboardFunc(keyboardCallback);
 	glutMouseFunc(mouseCallback);
+	glutMotionFunc(motionCallback);
 	glutPassiveMotionFunc(motionCallback);
 	glutIdleFunc(idleCallback);
 	glutCloseFunc(closeCallback);
@@ -138,18 +139,22 @@ void Init_GLUT::keyboardCallback(unsigned char key, int x, int y)
 	std::cout << "keyboard" << std::endl;
 	if (listener)
 		listener->notifyKeyboard(key, x, y);
+
+	glutPostRedisplay();
 }
 
 void Init_GLUT::mouseCallback(int button, int state, int x, int y)
 {
 	if (listener)
 		listener->notifyMouse(button, state, x, y);
+	glutPostRedisplay();
 }
 
 void Init_GLUT::motionCallback(int x, int y)
 {
 	if (listener)
 		listener->notifyPassiveMotion(x, y);
+	glutPostRedisplay();
 }
 
 void Init_GLUT::closeCallback(void)

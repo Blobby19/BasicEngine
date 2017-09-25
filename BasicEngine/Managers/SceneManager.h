@@ -35,6 +35,8 @@ public:
 	glm::mat4 getViewMatrix();
 	void setViewMatrix(glm::mat4 viewMatrix);
 	void setProjectionMatrix(glm::mat4 projectionMatrix);
+	void updateView();
+	void showMatrix(glm::mat4 matrix);
 
 private:
 	Managers::ModelsManager *modelsManager;
