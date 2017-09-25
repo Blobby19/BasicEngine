@@ -134,7 +134,7 @@ namespace LFS
 		{
 			std::stringstream stream;
 			stream << getTrackDirectory() << getShortTrackName().substr(0, 2) << '\\'
-				<< ((trackFileType == TrackFileType::PTH)?getShortTrackName():m_trackNameList[getShortTrackName()])
+				<< ((trackFileType == TrackFileType::PTH)?getShortTrackName():getTrackNameList()[getShortTrackName()])
 				<< ((trackFileType == TrackFileType::PTH)? PTH_TRACK_EXTENSION:SMX_TRACK_EXTENSION);
 			return stream.str();
 		}

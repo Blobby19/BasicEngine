@@ -39,13 +39,13 @@ public:
 	void showMatrix(glm::mat4 matrix);
 
 private:
-	Managers::ModelsManager *modelsManager;
+	Managers::ModelsManager *m_ModelsManager;
 
-	glm::mat4 projection_matrix;
-	glm::mat4 view_matrix;
+	glm::mat4 m_ProjectionMatrix;
+	glm::mat4 m_ViewMatrix;
 
-	bool mouseDown = false;
-	glm::vec2 mousePosition;
+	bool m_MouseDown = false;
+	glm::vec2 m_MousePosition;
 
 	float yaw, pitch, roll;
 	glm::vec3 eyeVector;

@@ -4,7 +4,10 @@ using namespace BasicEngine;
 using namespace Core;
 using namespace Init;
 
-Engine::Engine()
+Engine::Engine():
+	m_SceneManager(nullptr),
+	m_ModelsManager(nullptr),
+	m_ShaderManager(nullptr)
 {
 }
 

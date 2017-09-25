@@ -2,29 +2,30 @@
 
 using namespace BasicEngine::Managers;
 
-SceneManager::SceneManager()
+SceneManager::SceneManager():
+	m_ModelsManager(nullptr)
 {
 	glEnable(GL_DEPTH_TEST);
 
-	view_matrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
+	m_ViewMatrix = glm::mat4(1.0f, 0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, -1.0f, 0.0f,
 		0.0f, 0.0f, 10.0f, 1.0f);
 
-	modelsManager = new ModelsManager();
+	m_ModelsManager = new ModelsManager();
 }
 
 
 SceneManager::~SceneManager()
 {
-	delete modelsManager;
-	modelsManager = nullptr;
+	delete m_ModelsManager;
+	m_ModelsManager = nullptr;
 }
 
 void SceneManager::notifyBeginFrame()
 {
 	//notify here for the moment
-	modelsManager->update();
+	m_ModelsManager->update();
 }
 
 void SceneManager::notifyDisplayFrame()
@@ -32,8 +33,8 @@ void SceneManager::notifyDisplayFrame()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
-	modelsManager->draw();
-	modelsManager->draw(projection_matrix, view_matrix);
+	m_ModelsManager->draw();
+	m_ModelsManager->draw(m_ProjectionMatrix, m_ViewMatrix);
 }
 
 void SceneManager::notifyEndFrame()
@@ -46,7 +47,7 @@ void SceneManager::notifyReshape(int width, int height, int previous_width, int 
 	float ar = (float)glutGet(GLUT_WINDOW_WIDTH) / (float)glutGet(GLUT_WINDOW_HEIGHT);
 	float angle = 45.0f, near1 = 0.1f, far1 = 2000.0f;
 
-	projection_matrix = glm::perspective(angle, ar, near1, far1);
+	m_ProjectionMatrix = glm::perspective(angle, ar, near1, far1);
 
 	/*
 	projection_matrix[0][0] = 1.0f / (ar * tan(angle / 2.0f));
@@ -61,12 +62,12 @@ void SceneManager::notifyMouse(int button, int state, int x, int y)
 {
 	std::cout << "notifyMouse" << std::endl;
 	if (state == GLUT_UP)
-		mouseDown = false;
+		m_MouseDown = false;
 	if (state == GLUT_DOWN)
 	{
-		mouseDown = true;
-		mousePosition.x = x;
-		mousePosition.y = y;
+		m_MouseDown = true;
+		m_MousePosition.x = x;
+		m_MousePosition.y = y;
 	}
 }
 
@@ -107,10 +108,10 @@ void SceneManager::notifyKeyboard(unsigned char key, int x, int y)
 
 void SceneManager::notifyPassiveMotion(int x, int y)
 {
-	if (!mouseDown) return;
+	if (!m_MouseDown) return;
 
 	std::cout << "notifyPassiveMotion" << std::endl;
-	glm::vec2 mouse_delta = glm::vec2(x, y) - mousePosition;
+	glm::vec2 mouse_delta = glm::vec2(x, y) - m_MousePosition;
 
 	const float mouseX_sensitivity = 0.25f;
 	const float mouseY_sensitivity = 0.25f;
@@ -122,29 +123,29 @@ void SceneManager::notifyPassiveMotion(int x, int y)
 
 	std::cout << yaw << " - " << pitch << std::endl;
 
-	mousePosition = glm::vec2(x, y);
+	m_MousePosition = glm::vec2(x, y);
 
 	updateView();
 }
 
 void SceneManager::setModelsManager(ModelsManager *& _modelsManager)
 {
-	modelsManager = _modelsManager;
+	m_ModelsManager = _modelsManager;
 }
 
 glm::mat4 BasicEngine::Managers::SceneManager::getViewMatrix()
 {
-	return view_matrix;
+	return m_ViewMatrix;
 }
 
 void BasicEngine::Managers::SceneManager::setViewMatrix(glm::mat4 viewMatrix)
 {
-	view_matrix = viewMatrix;
+	m_ViewMatrix = viewMatrix;
 }
 
 void BasicEngine::Managers::SceneManager::setProjectionMatrix(glm::mat4 projectionMatrix)
 {
-	projection_matrix = projectionMatrix;
+	m_ProjectionMatrix = projectionMatrix;
 }
 
 void SceneManager::updateView()
