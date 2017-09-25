@@ -125,6 +125,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TrackLoader.cpp" />
     <ClCompile Include="TrackObject.cpp" />
+    <ClCompile Include="TrackTransform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubeIndex.h" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Smx.h" />
     <ClInclude Include="TrackLoader.h" />
     <ClInclude Include="TrackObject.h" />
+    <ClInclude Include="TrackTransform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
