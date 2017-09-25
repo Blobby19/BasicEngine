@@ -1,9 +1,10 @@
 #include <iostream>
+#include <map>
 
 #include <BasicEngine\Engine.h>
 #include <glm\gtc\matrix_transform.hpp>
-
-#include <map>
+#include <assimp\Importer.hpp>
+#include <assimp\scene.h>
 
 #include "TrackLoader.h"
 #include "TrackObject.h"
