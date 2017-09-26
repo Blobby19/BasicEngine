@@ -81,6 +81,7 @@ namespace LFS {
 
 			return 0;
 		}
+
 		bool TrackTransform::checkExists(std::string fileName)
 		{
 			std::ifstream fileToCheck(fileName.c_str());

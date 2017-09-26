@@ -42,17 +42,6 @@ int main(int argc, char **argv)
 		std::cout << "Error loading file!" << std::endl;
 		return -1;
 	}
-	
-	TrackObject *trackObject = new TrackObject();
-	trackObject->create(&smxTrack.objects[1], smxTrack.points[1], smxTrack.triangles[1]);
-	trackObject->setProgram(engine->getShaderManager()->getShader("trackShader"));
-	engine->getModelsManager()->setModel("track", trackObject);
-
-	CubeIndex *cube = new CubeIndex();
-	cube->create();
-	cube->setProgram(engine->getShaderManager()->getShader("trackShader"));
-	
-	engine->getModelsManager()->setModel("cube", cube);
 
 	LFS::Format::PTH_FILE_FORMAT pthTrack;
 	loader->readTrackFile(&pthTrack);
